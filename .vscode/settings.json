@@ -3,5 +3,14 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
-  }
+  },
+  "tailwindCSS.includeLanguages": {
+    "typescriptreact": "html"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["className=\"([^\"]*)", 1],
+    ["className=\\{`([^`]*)", 1],
+    ["class=\"([^\"]*)", 1],
+    ["className=\\{\\[?(['\"`])([^\"'`]*?)\\1\\]?", 2]
+  ]
 }
