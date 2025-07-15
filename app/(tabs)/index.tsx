@@ -1,11 +1,13 @@
+import MovieCard from "@/components/MovieCard";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import { fetchMovies } from "@/services/api";
 import useFetch from "@/services/useFetch";
 import { useRouter } from "expo-router";
-import { ActivityIndicator, Image, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Dimensions, FlatList, Image, ScrollView, Text, View } from "react-native";
+import SearchBar from "../../components/SearchBar";
 import '../global.css';
-import SearchBar from "./components/SearchBar";
+
 
 
 
@@ -17,7 +19,10 @@ export default function Index() {
     data: movies,
     loading: loadingMovies,
     error: errorMovies } = useFetch(() => fetchMovies({ query: "" })
-    )
+  )
+
+  const screenWidth = Dimensions.get('window').width;
+  const columnCount = screenWidth < 500 ? 2 : 3;
 
   return (
     <View className="flex-1 bg-primary">
@@ -43,6 +48,25 @@ export default function Index() {
               <Text className="text-white text-lg font-bold mt-5 mb-3">
                 Latest Movies
               </Text>
+
+              <FlatList
+                data={movies}
+                renderItem={({item})=> (
+                  <MovieCard
+                    {...item}
+                  />
+                  
+                )}
+                keyExtractor={(item) => item.id.toString()}
+                numColumns={columnCount}
+                columnWrapperStyle={{
+                  justifyContent: 'space-between',
+                  marginBottom: 12,
+                }}
+                className="mt-2 pb-32"
+                scrollEnabled={false}
+              
+              />
             
             </>
 
