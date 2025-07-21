@@ -6,8 +6,8 @@ import { Image, TextInput, View } from 'react-native'
 interface Props {
   onFocus: () => void
   placeholder: string
-  value: string,
-  onChangeText: (text: string) => void
+  value?: string,
+  onChangeText?: (text: string) => void
 }
 
 const SearchBar = ({onFocus, placeholder, value, onChangeText}: Props) => {
